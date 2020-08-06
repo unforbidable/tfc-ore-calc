@@ -1,0 +1,74 @@
+{
+  "name": "TFC+",
+  "components": [
+    { "name": "Copper" },
+    { "name": "Zinc" },
+    { "name": "Bismuth" },
+    { "name": "Tin" },
+    { "name": "Silver" },
+    { "name": "Gold" },
+    { "name": "Nickel" },
+    { "name": "Iron" },
+    { "name": "Steel" },
+    { "name": "Bronze" },
+    { "name": "Bismuth Bronze" },
+    { "name": "Black Bronze" },
+    { "name": "Brass" },
+    { "name": "Rose Gold" },
+    { "name": "Sterling Silver" },
+    { "name": "Black Steel" }
+  ],
+  "alloys": [
+    { "name": "Bronze", "components": [
+      { "name": "Copper", "min": 0.88, "max": 0.92 },
+      { "name": "Tin", "min": 0.08, "max": 0.12 }
+    ] },
+    { "name": "Bismuth Bronze", "components": [
+      { "name": "Copper", "min": 0.50, "max": 0.65 },
+      { "name": "Zinc", "min": 0.20, "max": 0.30 },
+      { "name": "Bismuth", "min": 0.10, "max": 0.20 }
+    ]},
+    { "name": "Black Bronze", "components": [
+      { "name": "Copper", "min": 0.50, "max": 0.70 },
+      { "name": "Gold", "min": 0.10, "max": 0.25 },
+      { "name": "Silver", "min": 0.10, "max": 0.25 }
+    ]},
+    { "name": "Brass", "components": [
+      { "name": "Copper", "min": 0.70, "max": 0.80 },
+      { "name": "Zinc", "min": 0.20, "max": 0.30 }
+    ] },
+    { "name": "Rose Gold", "components": [
+      { "name": "Copper", "min": 0.15, "max": 0.30 },
+      { "name": "Gold", "min": 0.70, "max": 0.85 }
+    ]},
+    { "name": "Sterling Silver", "components": [
+      { "name": "Copper", "min": 0.20, "max": 0.40 },
+      { "name": "Silver", "min": 0.60, "max": 0.80 }
+    ]},
+    { "name": "Black Steel", "components": [
+      { "name": "Steel", "min": 0.50, "max": 0.70 },
+      { "name": "Nickel", "min": 0.15, "max": 0.25 },
+      { "name": "Black Bronze", "min": 0.15, "max": 0.25 }
+    ]},
+    { "name": "Blue Steel", "components": [
+      { "name": "Black Steel", "min": 0.50, "max": 0.55 },
+      { "name": "Steel", "min": 0.20, "max": 0.25 },
+      { "name": "Bismuth Bronze", "min": 0.10, "max": 0.15 },
+      { "name": "Sterling Silver", "min": 0.10, "max": 0.15 }
+    ]},
+    { "name": "Red Steel", "components": [
+      { "name": "Black Steel", "min": 0.50, "max": 0.55 },
+      { "name": "Steel", "min": 0.20, "max": 0.25 },
+      { "name": "Brass", "min": 0.10, "max": 0.15 },
+      { "name": "Rose Gold", "min": 0.10, "max": 0.15 }
+    ]}
+  ],
+  "yields": [
+    { "name": "small", "value": 10 },
+    { "name": "poor", "value": 15 },
+    { "name": "normal", "value": 25 },
+    { "name": "rich", "value": 35 },
+    { "name": "ingot", "value": 100 }
+  ],
+  "stack": 16
+}

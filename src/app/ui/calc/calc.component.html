@@ -1,0 +1,19 @@
+<div class="row form-group mt-3">
+  <div class="col">
+    <select class="custom-select custom-select-sm">
+      <option selected>{{profileName}}</option>
+    </select>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <ng-container *ngFor="let group of groups">
+      <app-group [group]="group"></app-group>
+    </ng-container>
+  </div>
+</div>
+<div class="row form-group">
+  <div class="col">
+    <button class="btn btn-primary btn-sm" onclick="this.blur();" (click)="onClickNewCalculation()">New calculation!</button>
+  </div>
+</div>

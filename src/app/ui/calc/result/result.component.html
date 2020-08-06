@@ -1,0 +1,11 @@
+<div class="alert alter-light" *ngIf="!result">
+  Add stuff on the left!
+</div>
+<div [className]="result.name==='Unknown' ? 'alert alert-danger': 'alert alert-success'" *ngIf="result">
+  <ng-container *ngIf="result.parts.length > 1">
+    <ng-container *ngFor="let part of result.parts">
+      {{part.size}} units of {{part.name}} ({{part.ratio | percent}})<br/>
+    </ng-container>
+  </ng-container>
+  <b>{{result.volume}} units of {{result.name}}</b>
+</div>

@@ -1,0 +1,6 @@
+<div class="container container-fluid">
+<app-header></app-header>
+<app-calc *ngIf='loaded'></app-calc>
+<div *ngIf='error' class="alert alert-danger">Could not load profile: {{error}}</div>
+<div *ngIf='!error && !loaded' class="alert alert-primary">Loading profile... </div>
+</div>
