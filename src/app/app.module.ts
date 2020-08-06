@@ -10,6 +10,7 @@ import { GroupComponent } from './ui/calc/group/group.component';
 import { SuggestionComponent } from './ui/calc/suggestion/suggestion.component';
 import { ResultComponent } from './ui/calc/result/result.component';
 import { HeaderComponent } from './ui/common/header/header.component';
+import { FooterComponent } from './ui/common/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HeaderComponent } from './ui/common/header/header.component';
     GroupComponent,
     SuggestionComponent,
     ResultComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
