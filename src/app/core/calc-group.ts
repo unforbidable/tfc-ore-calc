@@ -2,12 +2,19 @@ import { CalcStack } from './calc-stack';
 import { ProfileService } from './profile.service';
 import { CalcResult } from './calc-result';
 import { CalcResultPart } from './calc-result-part';
+import { CalcResultNearMatch } from './calc-result-near-match';
+import { CalcResultNear } from './calc-result-near';
+import { Alloy } from '../models/alloy.model';
 
 export class CalcGroup {
   private stacks: CalcStack[] = [];
 
-  constructor(private profileService: ProfileService) {
-    this.addStack();
+  constructor(private profileService: ProfileService, alloy: Alloy) {
+    if (!alloy) {
+      this.addStack();
+    } else {
+      this.addStacksForAlloy(alloy);
+    }
   }
 
   public getStacks(): CalcStack[] {
@@ -19,6 +26,16 @@ export class CalcGroup {
     stack.size = 1;
     stack.yield = this.profileService.getYields()[0];
     this.stacks.push(stack);
+  }
+
+  public addStacksForAlloy(alloy: Alloy) {
+    for (const component of alloy.components) {
+      var stack = new CalcStack(this.profileService);
+      stack.name = component.name;
+      stack.size = 1;
+      stack.yield = this.profileService.getYields()[0];
+      this.stacks.push(stack);
+    }
   }
 
   public deleteStack(stack: CalcStack) {
@@ -60,6 +77,7 @@ export class CalcGroup {
       var result = new CalcResult();
       result.volume = volume;
       result.parts = parts;
+      result.nears = [];
 
       // Calculate ratios of all parts
       for (const part of parts) {
@@ -73,20 +91,24 @@ export class CalcGroup {
         // Try to find the matching alloy
         for (const alloy of this.profileService.getAlloys()) {
           var alloyComponentsToBeMatched = alloy.components.length;
+          var mixturePartsToBeMatched = result.parts.length;
           for (const part of parts) {
+            var alloyComponent = alloy.components.find((component) => {
+              return component.name === part.name && part.ratio >= component.min && part.ratio <= component.max;
+            });
             var alloyComponent = alloy.components.find((component) => {
               return component.name === part.name && part.ratio >= component.min && part.ratio <= component.max;
             });
             if (alloyComponent) {
               alloyComponentsToBeMatched--;
+              mixturePartsToBeMatched--;
             } else {
               break;
             }
           }
-          if (alloyComponentsToBeMatched == 0) {
-            // All components of the alloy matched parts of the mixture
+          if (alloyComponentsToBeMatched == 0 && mixturePartsToBeMatched == 0) {
+            // All components of the alloy matched all parts of the mixture
             result.name = alloy.name;
-            break;
           }
         }
 
@@ -95,7 +117,43 @@ export class CalcGroup {
         }
       }
 
+      for (const alloy of this.profileService.getAlloys()) {
+        if (alloy.name != result.name) {
+          var matches = [];
+          for (const part of parts) {
+            for (const component of alloy.components) {
+              if (component.name == part.name) {
+                var match: CalcResultNearMatch = {
+                  name: component.name,
+                  diff: this.getMatchDifference(part.ratio, component.min, component.max)
+                }
+                matches.push(match);
+                break;
+              }
+            }
+          }
+
+          if (matches.length > parts.length - 1) {
+            var near : CalcResultNear = {
+              alloy: alloy,
+              matches: matches
+            };
+            result.nears.push(near);
+          }
+        }
+      }
+
       return result;
+    }
+  }
+
+  getMatchDifference(ratio: number, min: number, max: number) {
+    if (ratio < min) {
+      return -1;
+    } else if (ratio > max) {
+      return 1;
+    } else {
+      return 0;
     }
   }
 }

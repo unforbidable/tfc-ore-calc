@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { CalcGroup } from './calc-group';
 import { ProfileService } from './profile.service';
+import { Alloy } from '../models/alloy.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,11 @@ export class CalcService {
   }
 
   public addGroup() {
-    this.groups.push(new CalcGroup(this.profileService));
+    this.groups.push(new CalcGroup(this.profileService, null));
+  }
+
+  public addGroupForAlloy(alloy: Alloy) {
+    this.groups.push(new CalcGroup(this.profileService, alloy));
   }
 
   public deleteGroup(group: CalcGroup) {

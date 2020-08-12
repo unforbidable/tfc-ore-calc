@@ -14,6 +14,19 @@
 </div>
 <div class="row form-group">
   <div class="col">
-    <button class="btn btn-primary btn-sm" onclick="this.blur();" (click)="onClickNewCalculation()">New calculation!</button>
+    <div class="btn-group">
+      <button class="btn btn-primary btn-sm" onclick="this.blur();" (click)="onClickNewCalculation()">New
+        calculation!</button>
+      <button type="button" class="btn btn-sm btn-primary dropdown-toggle dropdown-toggle-split"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="this.blur();">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu">
+        <ng-container *ngFor="let alloy of alloys">
+          <a class="dropdown-item" href="#" (click)="onClickNewCalculationForAlloy(alloy)">{{alloy.name}}</a>
+        </ng-container>
+      </div>
+    </div>
   </div>
 </div>
+<div class="btn-group">

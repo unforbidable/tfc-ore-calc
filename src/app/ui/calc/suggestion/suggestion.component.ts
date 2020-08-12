@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CalcResult } from 'src/app/core/calc-result';
 
 @Component({
   selector: 'app-suggestion',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./suggestion.component.scss']
 })
 export class SuggestionComponent implements OnInit {
+
+  @Input()
+  result: CalcResult;
 
   constructor() { }
 

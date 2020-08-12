@@ -1,1 +1,32 @@
-<p>suggestion works!</p>
+<table class="table table-bordered table-sm" style="min-width:360px;">
+  <tr>
+    <th scope="col">Suggestions</th>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      <div class="alert alter-light" *ngIf="!result || !result.nears">
+        No suggestions!
+      </div>
+      <div *ngIf="result && result.nears">
+        <div>
+          <div class="row align-content-start">
+            <ng-container *ngFor="let near of result.nears">
+              <div class="col">
+                <div class="alert alert-warning">
+                  <div class="row">
+                    <b>{{near.alloy.name}}</b>
+                  </div>
+                  <ng-container *ngFor="let component of near.alloy.components">
+                    <div class="row">
+                      {{component.name}}&nbsp;{{component.min | percent}}&nbsp;-&nbsp;{{component.max | percent}}
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>

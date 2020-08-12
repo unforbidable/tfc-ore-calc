@@ -1,11 +1,20 @@
-<div class="alert alter-light" *ngIf="!result">
-  Add stuff on the left!
-</div>
-<div [className]="result.name==='Unknown' ? 'alert alert-danger': 'alert alert-success'" *ngIf="result">
-  <ng-container *ngIf="result.parts.length > 1">
-    <ng-container *ngFor="let part of result.parts">
-      {{part.size}} units of {{part.name}} ({{part.ratio | percent:'1.0-2'}})<br/>
-    </ng-container>
-  </ng-container>
-  <b>{{result.volume}} units of {{result.name}}</b>
-</div>
+<table class="table table-bordered table-sm" style="min-width:360px;">
+  <tr>
+    <th scope="col">Output</th>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      <div class="alert alter-light" *ngIf="!result">
+        Add input!
+      </div>
+      <div [className]="result.name==='Unknown' ? 'alert alert-danger': 'alert alert-success'" *ngIf="result">
+        <ng-container *ngIf="result.parts.length > 1">
+          <ng-container *ngFor="let part of result.parts">
+            {{part.size}} units of {{part.name}} ({{part.ratio | percent:'1.0-2'}})<br />
+          </ng-container>
+        </ng-container>
+        <b>{{result.volume}} units of {{result.name}}</b>
+      </div>
+    </td>
+  </tr>
+</table>

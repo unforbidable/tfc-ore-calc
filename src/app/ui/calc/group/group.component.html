@@ -1,41 +1,46 @@
-<table class="table table-bordered table-sm">
-  <tr>
-    <th scope="col">&nbsp;</th>
-    <th scope="col">Input</th>
-    <th scope="col">Size</th>
-    <th scope="col">Count</th>
-    <th scope="col">Volume</th>
-    <th scope="col" class="w-50">Output</th>
-  </tr>
-  <ng-container *ngFor="let stack of group.getStacks(); first as isFirst">
-    <tr>
-      <td style="vertical-align: top;">
-        <button class="btn btn-danger btn-sm" onclick="this.blur();" (click)="onClickDeleteStack(stack)">&#10799;</button>
-      </td>
-      <td>
-        <select [(ngModel)]="stack.name" class="form-control-sm">
-          <option *ngFor="let c of components" [ngValue]="c">{{ c }}</option>
-        </select>
-      </td>
-      <td>
-        <select [(ngModel)]="stack.yield" class="form-control-sm">
-          <option *ngFor="let y of yields" [ngValue]="y">{{ y }}</option>
-        </select>
-      </td>
-      <td>
-        <input class="form-control-sm" type="number" name="input" [(ngModel)]="stack.size" min="1" max="16" size="4">
-      </td>
-      <td>
-        <input class="form-control-sm" type="text" name="input" [ngModel]="stack.getSum()" disabled size="4">
-      </td>
-      <td *ngIf="isFirst" [attr.rowspan]="group.getStacks().length + 1" style="vertical-align: top;">
-        <app-result [result]="group.getResult()"></app-result>
-      </td>
-    </tr>
-  </ng-container>
-  <tr>
-    <td colspan="5">
-      <button class="btn btn-primary btn-sm" onclick="this.blur();" (click)="onClickNewStack()">+</button>
-    </td>
-  </tr>
-</table>
+<div class="row justify-content-around">
+  <div class="col">
+    <table class="table table-bordered table-sm">
+      <tr>
+        <th scope="col">&nbsp;</th>
+        <th scope="col">Input</th>
+        <th scope="col">Size</th>
+        <th scope="col">Count</th>
+      </tr>
+      <ng-container *ngFor="let stack of group.getStacks(); first as isFirst">
+        <tr>
+          <td style="vertical-align: top;">
+            <button class="btn btn-danger btn-sm" onclick="this.blur();"
+              (click)="onClickDeleteStack(stack)">&#10799;</button>
+          </td>
+          <td>
+            <select [(ngModel)]="stack.name" class="form-control-sm">
+              <option *ngFor="let c of components" [ngValue]="c">{{ c }}</option>
+            </select>
+          </td>
+          <td>
+            <select [(ngModel)]="stack.yield" class="form-control-sm">
+              <option *ngFor="let y of yields" [ngValue]="y">{{ y }}</option>
+            </select>
+          </td>
+          <td>
+            <input class="form-control-sm" type="number" name="input" [(ngModel)]="stack.size" min="1" max="16"
+              size="4">
+            {{ stack.getSum() }}
+          </td>
+        </tr>
+      </ng-container>
+      <tr>
+        <td colspan="4">
+          <button class="btn btn-primary btn-sm" onclick="this.blur();" (click)="onClickNewStack()">+</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="col">
+    <app-result [result]="group.getResult()"></app-result>
+  </div>
+  <div class="col" *ngIf="group.getResult() && group.getResult().nears.length > 0">
+    <app-suggestion [result]="group.getResult()"></app-suggestion>
+  </div>
+</div>
