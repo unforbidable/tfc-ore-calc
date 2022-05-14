@@ -8,6 +8,7 @@
     { "name": "Silver" },
     { "name": "Gold" },
     { "name": "Nickel" },
+    { "name": "Lead" },
     { "name": "Iron" },
     { "name": "Steel" },
     { "name": "Bronze" },
@@ -44,6 +45,10 @@
     { "name": "Sterling Silver", "components": [
       { "name": "Copper", "min": 0.20, "max": 0.40 },
       { "name": "Silver", "min": 0.60, "max": 0.80 }
+    ]},
+    { "name": "Pewter", "components": [
+      { "name": "Tin", "min": 0.70, "max": 0.80 },
+      { "name": "Lead", "min": 0.20, "max": 0.30 }
     ]},
     { "name": "Black Steel", "components": [
       { "name": "Steel", "min": 0.50, "max": 0.70 },
